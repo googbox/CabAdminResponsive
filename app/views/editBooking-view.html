@@ -1,0 +1,146 @@
+<div class="user-detail" ng-controller="EditBookingController as editBooking">
+  <header-View></header-View>
+  <div class="custom-container single-cab-container">
+    <form name="CabForm" class="" novalidate>
+    <div class="container-fluid single-cab-form margin-top-20">
+        <div class="row zero-margin-bottom">
+          <div class="input-field col s12 padding-20">
+            <input id="icon_prefix" ng-model="editBooking.bookingData.charge_type" type="text" class="font12" name="cCode" required placeholder="Charge Code">
+            <span class="resetFields" ng-hide="editBooking.bookingData.charge_type == null || editBooking.bookingData.charge_type == ''" ng-click="editBooking.bookingData.charge_type = null">
+              <!-- <i class="material-icons top10">&#xE5C9;</i> -->
+              <img src="images/emptyField@3x.png" alt="">
+            </span>
+            <p class=" error-wrapper">
+              <span ng-show="CabForm.cCode.$error.minlength" class="help-block">Charge Code is too short.</span>
+              <span ng-show="CabForm.cCode.$error.maxlength" class="help-block">Username is too long.</span>
+            </p>
+          </div>
+        </div>
+        <div class="row zero-margin-bottom">
+          <div class="input-field col s12 padding-20">
+            <select id="request_raised_for" class="col s12" ng-options="bookedfor.name +' ('+bookedfor.empl_cd  +')' for bookedfor in editBooking.requseter | orderBy : 'bookedfor.name'" ng-model="editBooking.bookingData.request_raised_for" name="bookedFor" required
+                ng-change="editBooking.changedBookingFor()" ui-select2="select2Options">
+                <option></option>
+            </select>
+            <span class="resetFields" ng-hide="editBooking.bookingData.request_raised_for == null || editBooking.bookingData.request_raised_for == ''" ng-click="editBooking.resetRiderDetail()">
+              <!-- <i class="material-icons top10">&#xE5C9;</i> -->
+              <img class="top7" src="images/emptyField@3x.png" alt="">
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 padding-20">
+            <input id="icon_telephone" class="font12" type="text" ng-model="editBooking.bookingData.travel_guests1_mobile_no" placeholder="Mobile Number" required>
+            <span class="resetFields" ng-hide="editBooking.bookingData.travel_guests1_mobile_no == null || editBooking.bookingData.travel_guests1_mobile_no == ''" ng-click="editBooking.bookingData.travel_guests1_mobile_no = null">
+              <!-- <i class="material-icons top10">&#xE5C9;</i> -->
+              <img class="top17" src="images/emptyField@3x.png" alt="">
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="container form-tile margin-bottom-5" for="icon_prefix">Destination</div>
+        <div class="row single-cab-form">
+          <div class="row">
+            <div class="input-field col s12">
+              <select class="pickup_city" ng-options="pickCity.code as pickCity.code for pickCity in editBooking.pickupCity" ng-model="editBooking.bookingData.pickup_location" ng-change="editBooking.selectPickupLocation(editBooking.bookingData.pickup_location)" required>
+                              <option disabled selected value="">City of Travel</option>
+                          </select>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="row">
+            <div class="input-field col s12">
+              <select class="pickup_city" ng-options="pickLoc.pickup_id as pickLoc.pickup_id for pickLoc in editBooking.pickupLocat" ng-model="editBooking.bookingData.pickup_point_code" ng-change="editBooking.populateOtherPickupField();editBooking.checkAirportPickup()" required>
+                              <option disabled selected value="">Pick-Up Location</option>
+                          </select>
+              <div class="input-field col s12 otherPickup" ng-show="editBooking.showPickupField">
+                <input type="text" id="edit_travel_pickup_point_addr1" name="edit_travel_pickup_point_addr1" placeholder="Enter Pick-Up Address" ng-model="editBooking.bookingData.travel_pickup_point_addr1" ng-minlength="10"  ng-required="editBooking.showPickupField">
+                <span class="red-text text-darken-2 font11" ng-show="CabForm.edit_travel_pickup_point_addr1.$error.minlength || CabForm.edit_travel_pickup_point_addr1.$error.required">Enter at least 10 characters</span>
+              </div>
+              <div class="input-field col s12 otherPickup" ng-show="editBooking.showPickupFlightDetails">
+                <input type="text" id="pickup_flight_details" name="pickup_flight_details" placeholder="Enter Flight Details" ng-model="editBooking.bookingData.pickup_flight_details">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container margin-top-20">
+        <div class="row single-cab-form">
+          <div class="row">
+            <div class="input-field col s12">
+              <select class="pickup_city" ng-options="dropLoc.pickup_id as dropLoc.pickup_id for dropLoc in editBooking.dropupLocat" ng-model="editBooking.bookingData.drop_point_code" ng-change="editBooking.populateOtherDropField();editBooking.checkAirportDropoff()" required>
+                              <option disabled selected value="">Drop-Off Location</option>
+                          </select>
+              <div class="input-field col s12 otherDrop" ng-show="editBooking.showDropoffField">
+                <input type="text" id="edit_travel_drop_point_addr1" name="edit_travel_drop_point_addr1" placeholder="Enter Drop-Off Address" ng-model="editBooking.bookingData.travel_drop_point_addr1" ng-minlength="10" ng-required="editBooking.showDropoffField">
+                <span class="red-text text-darken-2 font11" ng-show="CabForm.edit_travel_drop_point_addr1.$error.minlength || CabForm.edit_travel_drop_point_addr1.$error.required">Enter at least 10 characters</span>
+              </div>
+
+              <div class="input-field col s12 otherDrop" ng-show="editBooking.showDropoffFlightDetails">
+                <input type="text" id="dropoff_flight_details" name="dropoff_flight_details" placeholder="Enter Flight Details" ng-model="editBooking.bookingData.dropoff_flight_details">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="container form-tile margin-bottom-5" for="icon_prefix">Booking Schedule</div>
+        <div class="row  single-cab-form">
+          <div class="row">
+            <div class="input-field col s12">
+              <div class="input-field col s6">
+                <p class="font12 form-tile zero-margin-bottom">From</p>
+                <input type="date" id="bookingFor" class="datepicker" ng-model="editBooking.bookingData.travelfrom_date" name="travelfrom_date" min="{{editBooking.forDate.currentDate|date:'yyyy-MM-dd'}}" required ng-change="editBooking.validateToDate()">
+              </div>
+              <div class="input-field col s6">
+                <p class="font12 form-tile zero-margin-bottom">To</p>
+                <input type="date" id="bookingTo" class="datepicker" ng-model="editBooking.bookingData.travelto_date" min="{{editBooking.forDate.currentDate|date:'yyyy-MM-dd'}}" name="travelto_date" required ng-change="editBooking.validateToDate()">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <div class="input-field col s6">
+                <div>
+                  <p class="font12 form-tile">Pick up Time</p>
+                  <input type="time" id="timepicker" class="timepicker" ng-model="editBooking.bookingData.pickupTime" required ng-change="editBooking.validateTime()">
+                </div>
+              </div>
+              <div class="input-field col s6">
+                <div>
+                  <p class="font12 form-tile">Duration</p>
+                  <select class="pickup_type border-bottom duration" ng-options="picktype.pType as picktype.pType for picktype in editBooking.pickupType" ng-model="editBooking.bookingData.travel_package">
+                                  <option disabled selected value="">Select Type in Hours</option>
+                              </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="container-fluid single-cab-form margin-top-20">
+        <div class="row">
+          <div class="input-field col s12 padding-20">
+          <input type="text" id="comments" class="font12" ng-model="editBooking.bookingData.car_class_rmk" placeholder="Add Comments">
+            <label class="form-tile active" for="textarea1">Notes</label>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="submit-btn col s12">
+    <!-- <button class="btn btn-desktop waves-effect waves-light hide-on-small-only" ng-click="editBooking.updateBooking()" type="submit" ng-disabled="CabForm.$invalid">
+        Book Now
+    </button> -->
+  </div>
+  <footer>
+    <button class="btn btn-primary btn-block signin" ng-click="editBooking.updateBooking()" type="submit" ng-disabled="CabForm.$invalid">Book Now</button>
+  </footer>
+  </form>
+</div>
+<sidebar-View></sidebar-View>
+</div>

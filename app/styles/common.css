@@ -1,0 +1,194 @@
+body {
+    overflow-y: auto !important;
+}
+.heading-inline{
+  font-family: 'SFText-Semibold';
+  font-size: 13px;
+}
+nav .button-collapse {
+    margin: 0px;
+}
+
+.font36 i {
+    font-size: 36px !important;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left:0;
+}
+
+footer button.btn,footer button.btn:hover,footer button.btn:focus {
+    background-color: #022b5d;
+    width: 100%;
+    border-radius: 0;
+    font-family:'SFDisplay-Regular'
+    font-size:14px;
+}
+
+.btn.btn-desktop {
+    background-color: #022b5d;
+    width:100%;
+}
+
+.blackColor {
+    color: #2f2f2f !important;
+    font-size:12px !important;
+}
+
+.border-top {
+    border-top: 1px solid #7f7f7f !important;
+}
+.border-bottom {
+    border-bottom: 1px solid #7f7f7f !important;
+}
+.pad-bottom-15per {
+    padding-bottom: 15% !important;
+}
+
+.margin-left-right {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.margin-top-20 {
+    margin-top: 20px;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px;
+}
+
+.side-nav li.active,
+.side-nav .collapsible-header:hover,
+.side-nav.fixed .collapsible-header:hover,
+.side-nav a:hover {
+    background: #fff;
+}
+
+.side-nav .collapsible-header,
+.side-nav.fixed .collapsible-header {
+    padding: 0 0px;
+}
+.collapsible-body{
+  padding:0px;
+}
+.sidebar-link li a i {
+    margin-right: 18px !important;
+}
+
+.side-nav a {
+    padding: 0px 12px;
+    position: relative;
+}
+.side-nav .sidebar-link a img{
+  position: absolute;
+  right: 30px;
+  top: 15px;
+  width:13px;
+}
+.side-nav .userView {
+    padding: 25px 5px 0;
+}
+
+.close-sidebar {
+    top: 10px;
+}
+
+.side-nav .userView .circle,
+.side-nav .userView .circle:hover {
+    height: 50px;
+    width: 50px;
+    font-size: 2em;
+    background-color: #202020;
+}
+.side-nav li.active, .side-nav .collapsible-header:hover, .side-nav.fixed .collapsible-header:hover, .side-nav a:hover{
+  background: transparent;
+}
+.side-nav .userView .name {
+    margin-top: 0px;
+    color: #2f2f2f;
+    font-size: 12px;
+}
+.side-nav .userView .fmno{
+  color:#2f2f2f;
+  opacity: 0.8;
+  font-size: 10px;
+  position: relative;
+  top:-15px;
+}
+
+/*.name-initial {
+    top: 0px;
+    right: 5px;
+}*/
+
+i.close {
+    color: #000;
+}
+ul.collapsible li.active .collapsible-header{
+  border-bottom:1px solid #7f7f7f !important;
+}
+.collapsible-header i {
+    color: rgb(117, 117, 117);
+}
+
+.collapsible-header.active i {
+    transform: rotate(180deg);
+}
+.side-nav .collapsible-body ul{
+  background: #EFEFF4;
+}
+.side-nav .collapsible-body ul li a{
+  color:#0B3363;
+  position: relative;
+  font-size: 12px;
+}
+.side-nav .collapsible-body ul li img{
+  position: relative;
+  top:10px;
+  left:-15px;
+  height:38px;
+  width:37px;
+}
+.absoluteHamburger,.absoluteHamburger a{
+  position: absolute;
+  height:20px;
+  top:5px;
+  left:5px;
+}
+.margin-top-12{
+  margin-top:12px;
+}
+.font10{
+  font-size: 10px !important;
+}
+.font11{
+  font-size: 11px !important;
+}
+.zero-margin-top{
+  margin-top:0px !important;
+}
+.zero-margin-bottom{
+  margin-bottom:0px !important;
+}
+.margin-bottom-5{
+  margin-bottom:5px;
+}
+.margin-bottom-10{
+  margin-bottom:10px;
+}
+.margin-bottom-neg-20{
+  margin-bottom: -20px;
+}
+.top-neg-20{
+  top:-20px;
+}
+.pointer{
+  cursor: pointer;
+}
+.zero-margin-left{
+  margin-left:0px !important;
+}

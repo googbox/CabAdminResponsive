@@ -1,0 +1,32 @@
+<ul id="slide-out" class="side-nav">
+    <li>
+        <div class="userView row border-bottom">
+            <span class="close-sidebar" ng-click="closeSideNav()"><img src="images/hamburgerDark72Px.png" alt=""></span>
+            <div class="col s3">
+                <a class="circle"><div class="center name-initial">{{nameInitail}}</div></a>
+            </div>
+            <div class="col s9">
+                <a style="padding:0px;"><span class="name">{{userName}}</span></a>
+                <a class="top-neg-20" style="line-height:6;padding:0px;"><span class="fmno">FMNO | {{fmno}}</span></a>
+            </div>
+        </div>
+    </li>
+    <ul class="collapsible" data-collapsible="accordion">
+        <li>
+            <div class="collapsible-header margin-left-right blackColor active">Cab Booking <i class="material-icons right">&#xE313;</i></div>
+            <div class="collapsible-body">
+                <ul>
+                    <li class="margin-left-right"><a ui-sref="newbooking-view"><img src="images/cab144Px@2x.png" alt=""> Book a Cab</a></li>
+                    <li class="pad-bottom-15per margin-left-right"><a ui-sref="booking-view"><img src="images/manage144Px@2x.png" alt=""> Manage Booking</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <div class="sidebar-link">
+        <li class="border-top"><a href="https://digital4ino.mckinsey.com/guesthouse/" target="_blank" class="blackColor">Guest House Booking <img src="images/guestHouse72Px.png" alt="guestHouse72Px" class="right"></a></li>
+        <li class="border-top"><a href="https://digital4ino.mckinsey.com/va/" target="_blank" class="blackColor">VA Booking <img src="images/vA72Px.png" alt="vA72Px" class="right"></a></li>
+        <li class="border-top"><a ui-sref="changePassword" class="blackColor">Change Password <img src="images/lock.png" alt="lock" class="right"></a></li>
+        <li class="border-top"><a href="mailto:anand_rodrigues@mckinsey.com?subject=Cab Booking App Issue#" class="blackColor">Contact Us <img src="images/ContactUs.png" alt="ContactUs" class="right"></a></li>
+        <li class="border-top"><a ng-click="signOut()" class="blackColor">Logout <img src="images/logout72Px.png" alt="logout72Px" class="right"></a></li>
+    </div>
+</ul>

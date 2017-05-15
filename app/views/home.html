@@ -1,0 +1,39 @@
+<div class="container-fluid" ng-controller="HomeController as home">
+  <header class="header">
+    <div class="row">
+      <div class="absoluteHamburger">
+          <a href="javascript:void(0);" data-activates="slide-out" class="button-collapse" ng-show="!hideMenu"><img src="images/hamburger.png" alt="hamburger"></a>
+      </div>
+      <div class="col s12 center-align margin-top-12">
+          <a class="heading-inline home">{{headerTitle}}</a>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="login-header">
+        <div class="row">
+          <div class="col s12">
+            <div class="title">Welcome, {{home.username}}!</div>
+          </div>
+        </div>
+        <div class="col s12 center font12">
+          What would you like to do today?
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="row margin-top-bottom zero-margin-top">
+    <div class="row navigateFromHome zero-margin-bottom" ui-sref="newbooking-view">
+      <div class="col s12 center pointer"><img src="images/cab212Px.png"></div>
+      <div class="col s12 center font11 pointer">
+        New Booking
+      </div>
+    </div>
+    <div class="row navigateFromHome" ui-sref="booking-view">
+      <div class="col s12 center pointer"><img src="images/manage212Px.png"></div>
+      <div class="col s12 center font11 pointer">
+        Manage Bookings
+      </div>
+    </div>
+  </div>
+</div>
+<sidebar-View></sidebar-View>

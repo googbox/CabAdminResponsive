@@ -1,0 +1,18 @@
+<div class="navbar-fixed booking-header">
+    <div class="user-detail ng-scope">
+        <nav>
+            <div id="header" class=" row nav-wrapper profile-header  single-cab-header">
+                <div class="col s2">
+                    <a href="javascript:void(0);" data-activates="slide-out" class="button-collapse" ng-show="!hideMenu"><img src="images/hamburger.png" alt="hamburger"></a>
+                    <a href="javascript:void(0);" ui-sref="home" class="font36" ng-show="hideMenu"><i class="material-icons">&#xE314;</i></a>
+                </div>
+                <div class="col s8 center-align">
+                    <a class="heading-inline">{{headerTitle}}</a>
+                </div>
+                <div class="col s2">
+                    <a class="heading-inline cancel" ng-show="showHeaderOpt" ui-sref="booking-view">Cancel</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

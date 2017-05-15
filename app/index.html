@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html ng-app="mdl-Cab">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>McK Orix Cab</title>
+    <link rel="icon" type="image/png" href="images/cab144Px@2x.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/materialize/bin/materialize.css" />
+    <link rel="stylesheet" href="bower_components/select2/select2.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <link rel="stylesheet" href="cdn/materialize.clockpicker.css">
+    <!-- build:css(.tmp) styles/main.css -->
+    <!-- injector:css -->
+    <link rel="stylesheet" href="styles/mdl_style.css">
+    <link rel="stylesheet" href="styles/bookingview.css">
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/home.css">
+    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/newBooking.css">
+    <!-- endinjector -->
+    <!-- endbuild -->
+
+</head>
+
+<body ng-controller="AppController" ng-class="bodyClass" class="loginBackground">
+    <section>
+        <ui-view></ui-view>
+    </section>
+    <div class="reveal-modal-bg modal-padding data-loading-overlay" style="display:block;" ng-show="showProgressBar" ng-click="$event.stopPropagation()"></div>
+    <div ng-show="showProgressBar" class="loading-wrapper" id="progressBar" ng-click="$event.stopPropagation()">
+        <!-- <div id="ajaxloader"></div> -->
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+        <span class="loading">Loading...<!-- {{locale['label.progressBar.message']}} --></span>
+    </div>
+    <div id="sessionTimeoutModal" class="modal">
+        <div class="modal-content center-align">
+            <h4>Session Expired</h4>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="row modal-form-row">
+                    <div class="input-field col s12 msgs center">
+                        <span>Please login again to continue</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer center">
+            <a class="col s6 modal-action modal-close waves-effect waves-green btn" ng-click="expireSession()">OK</a>
+        </div>
+    </div>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/materialize/bin/materialize.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/materialize-autocomplete/jquery.materialize-autocomplete.js"></script>
+    <script src="bower_components/select2/select2.js"></script>
+    <script src="bower_components/angular-ui-select2/src/select2.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <script type="text/javascript" src="cdn/materialize.clockpicker.js"></script>
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <!-- injector:js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/appHandler.js"></script>
+    <script src="scripts/controllers/bookingCtrl.js"></script>
+    <script src="scripts/controllers/bookingCtrl_bkup.js"></script>
+    <script src="scripts/controllers/editBookingCtrl.js"></script>
+    <script src="scripts/controllers/homeCtrl.js"></script>
+    <script src="scripts/controllers/loginCtrl.js"></script>
+    <script src="scripts/controllers/newBookingCtrl.js"></script>
+    <script src="scripts/services/mdl_directives.js"></script>
+    <script src="integration/integration.js"></script>
+    <!-- endinjector -->
+    <!-- endbuild -->
+</body>
+
+</html>

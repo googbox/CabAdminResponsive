@@ -1,0 +1,154 @@
+<div class="user-detail" ng-controller="NewBookingController as cabBooking">
+  <header-View></header-View>
+  <div class="custom-container single-cab-container">
+    <form name="CabForm" class="" novalidate>
+    <div class="container-fluid single-cab-form margin-top-20">
+        <div class="row zero-margin-bottom">
+          <div class="input-field col s12 padding-20">
+            <input id="icon_prefix" ng-model="cabBooking.bookingDetail.cCode" type="text" class="font12" name="cCode" required placeholder="Charge Code">
+            <span class="resetFields" ng-hide="cabBooking.bookingDetail.cCode == null || cabBooking.bookingDetail.cCode == ''" ng-click="cabBooking.bookingDetail.cCode = null">
+              <!-- <i class="material-icons top10">&#xE5C9;</i> -->
+              <img src="images/emptyField@3x.png" alt="">
+            </span>
+            <p class=" error-wrapper">
+              <span ng-show="CabForm.cCode.$error.minlength" class="help-block">Charge Code is too short.</span>
+              <span ng-show="CabForm.cCode.$error.maxlength" class="help-block">Username is too long.</span>
+            </p>
+          </div>
+        </div>
+        <div class="row zero-margin-bottom">
+          <div class="input-field col s12 padding-20">
+            <select id="request_raised_for" class="col s12" ng-options="bookedfor.name +' ('+bookedfor.empl_cd  +')' for bookedfor in cabBooking.requester | orderBy : 'bookedfor.name'" ng-model="cabBooking.bookingDetail.request_raised_for" name="bookedFor" required
+                ng-change="cabBooking.changedBookingFor()" ui-select2="select2Options">
+                <option></option>
+              </select>
+              <span class="resetFields" ng-hide="cabBooking.bookingDetail.request_raised_for == null || cabBooking.bookingDetail.request_raised_for == ''" ng-click="cabBooking.resetRiderDetail()">
+                <!-- <i class="material-icons top10">&#xE5C9;</i> -->
+                <img class="top7" src="images/emptyField@3x.png" alt="">
+              </span>
+              <p class=" error-wrapper">
+                <span ng-show="CabForm.bookedFor.$error.minlength" class="help-block">Username is too short.</span>
+                <span ng-show="CabForm.bookedFor.$error.maxlength" class="help-block">Username is too long.</span>
+              </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 padding-20">
+            <input id="icon_telephone" class="font12" type="text" ng-model="cabBooking.bookingDetail.contact" placeholder="Mobile Number" required>
+            <span class="resetFields" ng-hide="cabBooking.bookingDetail.contact == null || cabBooking.bookingDetail.contact == ''" ng-click="cabBooking.bookingDetail.contact = null">
+              <!-- <i class="material-icons top10">&#xE5C9;</i> -->
+              <img class="top17" src="images/emptyField@3x.png" alt="">
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="container form-tile margin-bottom-5" for="icon_prefix">Destination</div>
+        <div class="row single-cab-form">
+          <div class="row">
+            <div class="input-field col s12">
+              <select class="pickup_city" ng-options="pickCity.code as pickCity.code for pickCity in cabBooking.pickupCity" ng-model="cabBooking.bookingDetail.pickup_location" ng-change="cabBooking.selectPickupLocation(cabBooking.bookingDetail.pickup_location)" required>
+                              <option disabled selected value="">City of Travel</option>
+                          </select>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="row">
+            <div class="input-field col s12">
+              <select class="pickup_city" ng-options="pickLoc.pickup_id as pickLoc.pickup_id for pickLoc in cabBooking.pickupLocat" ng-model="cabBooking.bookingDetail.pickup_point_code" ng-change="cabBooking.populateOtherPickupField();cabBooking.checkAirportPickup()" required>
+                              <option disabled selected value="">Pick-Up Location</option>
+                          </select>
+              <div class="input-field col s12 otherPickup" ng-show="cabBooking.showPickupField">
+                <input type="text" id="travel_pickup_point_addr1" name="travel_pickup_point_addr1" placeholder="Enter Pick-Up Address" ng-model="cabBooking.bookingDetail.travel_pickup_point_addr1" ng-minlength="10" ng-required="cabBooking.showPickupField">
+                <span class="red-text text-darken-2 font11" ng-show="CabForm.travel_pickup_point_addr1.$error.minlength || CabForm.travel_pickup_point_addr1.$error.required">Enter at least 10 characters</span>
+              </div>
+              <div class="input-field col s12 otherPickup" ng-show="cabBooking.showPickupFlightDetails">
+                <input type="text" id="pickup_flight_details" name="pickup_flight_details" placeholder="Enter Flight Details" ng-model="cabBooking.bookingDetail.pickup_flight_details">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container margin-top-20">
+        <div class="row single-cab-form">
+          <div class="row">
+            <div class="input-field col s12">
+              <select class="pickup_city" ng-options="dropLoc.pickup_id as dropLoc.pickup_id for dropLoc in cabBooking.dropupLocat" ng-model="cabBooking.bookingDetail.drop_point_code" ng-change="cabBooking.populateOtherDropField();cabBooking.checkAirportDropoff()" required>
+                              <option disabled selected value="">Drop-Off Location</option>
+                          </select>
+              <div class="input-field col s12 otherDrop" ng-show="cabBooking.showDropoffField">
+                <input type="text" id="travel_drop_point_addr1" name="travel_drop_point_addr1" placeholder="Enter Drop-Off Address" ng-model="cabBooking.bookingDetail.travel_drop_point_addr1"  ng-minlength="10" ng-required="cabBooking.showDropoffField">
+                <span class="red-text text-darken-2 font11" ng-show="CabForm.travel_drop_point_addr1.$error.minlength || CabForm.travel_drop_point_addr1.$error.required">Enter at least 10 characters</span>
+              </div>
+              <div class="input-field col s12 otherDrop" ng-show="cabBooking.showDropoffFlightDetails">
+                <input type="text" id="dropoff_flight_details" name="dropoff_flight_details" placeholder="Enter Flight Details" ng-model="cabBooking.bookingDetail.dropoff_flight_details">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="container form-tile margin-bottom-5" for="icon_prefix">Booking Schedule</div>
+        <div class="row single-cab-form">
+          <div class="row">
+            <div class="input-field col s12">
+              <!-- <span class="form-tile" style="float:left;position:absolute">Booking</span> -->
+              <div class="input-field col s6">
+                <p class="font12 form-tile zero-margin-bottom">From</p>
+                <input type="date" id="bookingFor" ng-model="cabBooking.bookingDetail.travelfrom_date" name="travelfrom_date" min="{{cabBooking.forDate.currentDate|date:'yyyy-MM-dd'}}" class="request-date datepicker" required ng-change="cabBooking.validateToDate()">
+                <span ng-show="CabForm.travelfrom_date.$error.min" class="help-block">Select from current date.</span>
+              </div>
+              <div class="input-field col s6">
+                <p class="font12 form-tile zero-margin-bottom">To</p>
+                <input type="date" id="bookingTo" ng-model="cabBooking.bookingDetail.travelto_date" min="{{cabBooking.forDate.currentDate|date:'yyyy-MM-dd'}}" name="travelto_date" required class="request-date datepicker" ng-change="cabBooking.validateToDate()">
+                <span ng-show="CabForm.travelto_date.$error.min" class="help-block">Select from current date.</span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 margin-bottom-10">
+              <!-- <span class="form-tile" style="float:left;position:absolute">Pick up Time</span> -->
+              <div class="input-field col s6">
+                <div>
+                  <p class="font12 form-tile">Pick up Time</p>
+                  <input id="pickupTime" class="timepicker" type="time" ng-model="cabBooking.bookingDetail.pickupTime" ng-change="cabBooking.validateTime()" required>
+                </div>
+              </div>
+              <div class="input-field col s6">
+                <div>
+                  <p class="form-tile zero-margin-left">Duration</p>
+                  <select class="pickup_type border-bottom duration" ng-options="picktype.pType as picktype.pType for picktype in cabBooking.pickupType" ng-model="cabBooking.bookingDetail.travel_package">
+                                      <option disabled selected value="">Select Type in Hours</option>
+                                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+
+      <div class="container-fluid single-cab-form margin-top-20">
+        <div class="row">
+          <div class="input-field col s12 padding-20">
+            <!-- <textarea id="textarea1" class="materialize-textarea" ng-model="cabBooking.bookingDetail.car_class_rmk" placeholder="Add Comments"></textarea> -->
+            <input type="text" id="comments" class="font12" ng-model="cabBooking.bookingDetail.car_class_rmk" placeholder="Add Comments">
+            
+            <label class="form-tile active" for="textarea1">Notes</label>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="submit-btn col s12 margin-top-20">
+    <!-- <button class="btn btn-desktop waves-effect waves-light hide-on-small-only" id="bookingSubmit" ng-click="cabBooking.postSingleCabRequest()" type="submit" ng-disabled="CabForm.$invalid">
+      Book Now
+  </button> -->
+  </div>
+  <footer>
+    <button class="btn btn-primary btn-block signin" ng-click="cabBooking.postSingleCabRequest()" type="button" ng-disabled="CabForm.$invalid">Book Now</button>
+  </footer>
+  </form>
+</div>
+<sidebar-View></sidebar-View>

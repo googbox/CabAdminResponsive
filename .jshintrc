@@ -1,0 +1,20 @@
+{
+  "asi": true,
+  "bitwise": true,
+  "browser": true,
+  "curly": true,
+  "eqeqeq": false,
+  "esnext": true,
+  "latedef": false,
+  "noarg": true,
+  "node": true,
+  "strict": true,
+  "undef": true,
+  "unused": true,
+  "newcap": false,
+  "globals": {
+    "angular": false,
+    "$": false,
+    "Materialize": false
+  }
+}

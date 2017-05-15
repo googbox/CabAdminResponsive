@@ -1,0 +1,101 @@
+.tabs{
+  background-color: #f7f7f7;
+  overflow-x: hidden;
+}
+.tabs .tab{
+  text-transform: capitalize;
+}
+.tabs .tab a{
+  color:#7b7b7b;
+}
+.tabs .tab a.active{
+  color: #0b3363;
+}
+.tabs .indicator{
+  background-color: #0b3363 !important;
+}
+span.details,div.details{
+  font-size: 12px;
+  color:#7d7d7d;
+}
+span.status{
+  font-size: 10px;
+  font-weight: bold;
+  position: relative;
+  top: -6px;
+}
+.bookingFont{
+  font-size: 14px;
+}
+.pad-eq{
+  padding:12px;
+}
+.pad-bottom-20{
+  padding-bottom: 20px !important;
+}
+.card-cab, .card-calender{
+  border-radius:10px !important;
+  box-shadow:none !important;
+}
+.bookingBox .row{
+  margin-bottom:5px !important;
+}
+.editDetails a{
+  font-weight:bold;
+  color:#2f2f2f;
+  cursor:pointer;
+}
+.editDetails a.disable{
+  color:#2f2f2f;
+  cursor:default;
+  opacity: 0.4;
+  font-weight: lighter;
+  pointer-events: none;
+}
+.cancelBtn{
+  position: absolute;
+  top:2px;
+  right:5px;
+}
+.cancelBtn img{
+  height:15px;
+  width:15px;
+}
+.controlBtns.row{
+  margin-bottom:0px !important;
+  padding-bottom:0px !important;
+}
+.controlBtns.row div.col.s4,.controlBtns.row div.col.s6{
+  margin-top: -5px;
+  border-right: 1px solid #7f7f7f;
+  height: 40px;
+  padding-top: 5px;
+}
+.controlBtns.row div.col.s4:last-child,.controlBtns.row div.col.s6:last-child{
+  border-right:none;
+}
+/*Status*/
+span.status.Allocated{color : rgb(242, 205, 35);}
+span.status.Cancel{color : rgb(255, 59, 48);}
+span.status.Approved{color : #FFC0CB;}
+span.status.Closed{color : #ADFF2F;}
+span.status.Declined{color : #ADD8E6;}
+span.status.Confirmed{color : rgb(76, 217, 100);}
+span.status.Draft{color : #b3b37e;}
+
+
+@media screen and (max-width:768px){
+  .bookingFont{
+    font-size: 12px !important;
+  }
+  .editDetails a{
+    font-size: 14px;
+  }
+  .cancelBtn{
+    top:0;
+  }
+  .cancelBtn img {
+      height: 11px;
+      width: 11px;
+  }
+}

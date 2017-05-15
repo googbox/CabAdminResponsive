@@ -1,0 +1,140 @@
+.title{
+  font-family: 'SFDisplay-Thin';
+}
+.loginBackground{
+  background: url('../images/Mobile.png')  no-repeat center center fixed;
+  /*background: url('/cab/images/Mobile.png')  no-repeat center center fixed;*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color:#fff;
+  height:100vh;
+}
+.login-header img{
+  height:auto;
+  margin:0 auto 0;
+}
+.login-header .title{
+  font-size: 25px;
+  font-weight: lighter;
+}
+.login-header-mobile{
+  /*background:#022b5d;*/
+  padding:0px;
+  /*box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);*/
+  height:56px;
+}
+.margin-top-bottom{
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.login-header-mobile .title{
+  padding:10px;
+  font-size: 16px;
+  color:#fff;
+  text-align: center;
+}
+.loginContainer.container .row{
+  margin-bottom:0px !important;
+  position: relative;
+  /*margin-top:20px;*/
+}
+.forgot-password{
+  margin:10px 10px;
+}
+.forgot-password a{
+  color:#fff;
+  font-size: 12px;
+}
+.form-signin{
+  padding:0px;
+}
+input.loginInput,input[type=text]:focus:not([readonly]).loginInput{
+  color:#fff !important;
+  border-bottom: 1px solid #fff;
+  box-shadow: none;
+}
+input.loginInput:-webkit-autofill,input.forgotPasswordInput:-webkit-autofill{
+  color:#fff !important;
+  -webkit-text-fill-color : #fff !important;
+}
+.forgotPasswordInputParent{
+  margin-bottom:20px !important;
+}
+.loginInput{
+  margin:0px !important;
+}
+.alert{
+  margin-bottom: 0px;
+  padding:5px;
+}
+.resetFields img{
+  display: inline-block !important;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 13px;
+  opacity: 0.4;
+  height:12px;
+  width:12px;
+}
+.cabForm{
+  border-radius: 10px;
+  padding-bottom:5px;
+}
+#modal1,#modal2{
+  top: 33% !important;
+  border-radius:10px;
+}
+#modal1 .modal-content,#modal2 .modal-content{
+  padding-top: 15px !important;
+  color:#2f2f2f !important;
+  background: #F7F7F7;
+  border-radius: 10px;
+  padding:0px;
+}
+#modal2 .modal-content .row.border-bottom{
+  padding:15px;
+}
+.alert.alert-danger div{
+  font-size: 11px;
+}
+.rememberForgotSec{
+  margin-top:10px;
+}
+.rememberUser{
+  margin:0 10px;
+}
+label.rememberme{
+  color:#fff;
+  font-size:12px;
+  padding-left:25px;
+}
+[type="checkbox"].filled-in:not(:checked) + label:after{
+  border: 2px solid #fff;
+}
+[type="checkbox"].filled-in:checked + label:after{
+  border: 2px solid #fff;
+  background-color: transparent;
+}
+@media screen and (min-width:768px){
+  .rememberForgotSec{
+    margin-top:0px;
+  }
+  .loginContainer.container .row{
+    margin-bottom:20px !important;
+  }
+  .form-signin{
+    background: transparent;
+    max-width: 480px !important;
+  }
+  .loginBackground{
+    background: url('../images/Desktop.png') no-repeat center center fixed;
+    /*background: url('/cab/images/Desktop.png') no-repeat center center fixed;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+}

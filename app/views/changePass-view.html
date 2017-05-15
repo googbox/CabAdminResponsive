@@ -1,0 +1,24 @@
+<div class="navbar-fixed booking-header" ng-controller="ChangePasswordController as passChange">
+  <header-View></header-View>
+  <div class="container reset-pass-wrapper">
+    <form name="CabForm" class="single-cab-form cabForm">
+      <div class="row">
+        <div class="input-field col s12 padding-20">
+          <input class="font12" type="password" ng-model="passChange.user.oldPassword" placeholder="Old Password">
+          <span class="resetFields" ng-hide="passChange.user.oldPassword == null || passChange.user.oldPassword == ''" ng-click="passChange.user.oldPassword = null"><img src="images/emptyField@3x.png" alt=""></span>
+        </div>
+        <div class="input-field col s12 padding-20">
+          <input class="font12" type="password" ng-model="passChange.user.newPassword" placeholder="New Password">
+          <span class="resetFields" ng-hide="passChange.user.newPassword == null || passChange.user.newPassword == ''" ng-click="passChange.user.newPassword = null"><img src="images/emptyField@3x.png" alt=""></span>
+        </div>
+        <div class="submit-btn col s12">
+          <button class="btn btn-desktop waves-effect waves-light hide-on-small-only" ng-click="passChange.resetPass()" type="submit" name="action">Submit
+			    </button>
+        </div>
+      </div>
+      <footer>
+        <button class="btn btn-primary btn-block signin hide-on-med-and-up" ng-click="passChange.resetPass()" type="submit">Submit</button>
+      </footer>
+    </form>
+  </div>
+  <sidebar-View></sidebar-View>

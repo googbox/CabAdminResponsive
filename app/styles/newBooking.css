@@ -1,0 +1,149 @@
+.custom-container{
+  padding:0px;
+}
+.row.single-cab-form{
+  border-radius:5px;
+}
+.row.single-cab-form .row{
+  margin-bottom:0px !important;
+}
+.row.single-cab-form .row .input-field{
+  margin-top:0px !important;
+  color:000;
+}
+.container-fluid.single-cab-form{
+  width:70%;
+  margin:20px auto;
+  border-radius:10px;
+}
+#bookingSubmit{
+  width:70%;
+}
+.font12.form-tile{
+  margin-left:0px;
+}
+p.form-tile,label.form-tile{
+  color:#2f2f2f !important;
+}
+.hideDates{
+  opacity: 0;
+}
+.dateMocker{
+  font-size: 12px;
+  position: absolute;
+  top: 55px;
+  border-bottom: 1px solid #7f7f7f;
+  padding-bottom: 10px;
+  width:94%;
+}
+.padding-20{
+  padding: 0px 20px !important;
+}
+.input-field.col label{
+  left:0.5rem;
+}
+.padding-20 .resetFields i{
+  right:20px;
+}
+.select2-container .select2-choice{
+  border: 0px;
+  box-shadow: none;
+  background-image: none;
+  border-bottom: 1px solid #9e9e9e;
+  border-radius: 0px;
+  padding : 0px;
+}
+.select2-container .select2-choice span{
+  font-size: 12px;
+}
+.select2-container .select2-choice .select2-arrow{
+  display: none;
+}
+.select2-container{
+  padding:0px !important;
+}
+.select2-search input, .select2-search-choice-close, .select2-container .select2-choice abbr, .select2-container .select2-choice .select2-arrow b{
+  background-image: none !important;
+}
+.duration{
+  position: relative;
+  top:-5px;
+}
+.input-field .prefix ~ input, select{
+  height:2.5rem;
+}
+.select2-results .select2-result-label{
+  padding: 0px 7px 0px;
+  margin: 0;
+  font-size: 12px;
+  font-family: 'SFText-Regular';
+}
+input:not([type]), input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea{
+  height:2.1rem;
+  font-size: 12px;
+  margin-bottom:0px;
+}
+#icon_telephone,#comments{
+  height: 2.5rem;
+  margin-bottom: 15px;
+}
+.top10{
+  top:10px !important;
+}
+.top6{
+  top:6px !important;
+}
+.top16{
+  top:15px !important;
+}
+.top17{
+  top:17px !important;
+}
+.top7{
+  top:7px !important
+}
+.single-cab-form .resetFields img{
+  right:20px;
+  opacity: 1;
+}
+
+input#comments:-webkit-autofill,
+input#comments:-webkit-autofill:hover,
+input#comments:-webkit-autofill:focus,
+input#icon_telephone:-webkit-autofill,
+input#icon_telephone:-webkit-autofill:hover,
+input#icon_telephone:-webkit-autofill:focus,
+input[name=cCode]:-webkit-autofill, input[name=cCode]:-webkit-autofill:hover, input[name=cCode]:-webkit-autofill:focus,
+input#travel_pickup_point_addr1:-webkit-autofill,
+input#travel_pickup_point_addr1:-webkit-autofill:hover,
+input#travel_pickup_point_addr1:-webkit-autofill:focus,
+input#travel_drop_point_addr1:-webkit-autofill,
+input#travel_drop_point_addr1:-webkit-autofill:hover,
+input#travel_drop_point_addr1:-webkit-autofill:focus,
+input#edit_travel_pickup_point_addr1:-webkit-autofill,
+input#edit_travel_pickup_point_addr1:-webkit-autofill:hover,
+input#edit_travel_pickup_point_addr1:-webkit-autofill:focus,
+input#edit_travel_drop_point_addr1:-webkit-autofill,
+input#edit_travel_drop_point_addr1:-webkit-autofill:hover,
+input#edit_travel_drop_point_addr1:-webkit-autofill:focus,
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill 
+{
+  -webkit-text-fill-color: #2f2f2f !important;
+  border-bottom:1px solid #9e9e9e;
+  background-color: #fff !important;
+}
+.otherPickup,.otherDrop{
+  border-top: 1px solid #efefef;
+  padding: 0px 0px !important;
+  padding-bottom: 15px !important;
+}
+.otherPickup input,.otherDrop input{
+  padding-left: 6px;
+  color:#000;
+}
+@media screen and (max-width:768px){
+  .container-fluid.single-cab-form{
+    width:100%;
+    border-radius: 0px;
+  }
+}

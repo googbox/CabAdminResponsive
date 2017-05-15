@@ -1,0 +1,232 @@
+<div ng-controller="BookingController as bookDetails" class="bodyBackground">
+  <header-View></header-View>
+  <!-- <div class="plus" ui-sref="newbooking-view"><img src="images/plus.svg"></div> -->
+  <div class="v-wrapper" style="height: 20em" ng-if="!bookDetails.hasBookings">
+    <h5 class="wrap-item grey-text text-darken-2">No bookings available</h5>
+  </div>
+  <!-- <div class="container-fluid">
+    <div class="row">
+      <ul class="tabs">
+        <li class="tab col s6"><a href="#pastBookings">Past</a></li>
+        <li class="tab col s6"><a class="active" href="#upcomingBookings">Upcoming</a></li>
+      </ul>
+    </div>
+  </div> -->
+  <div class="container bookings">
+    <!-- New Model -->
+    <div class="ad-hoc-container">
+      <!-- <div class="row margin-top-20 v-wrapper" style="height: 20em" ng-if="!bookDetails.hasBookings">
+        <h5 class="center grey-text text-darken-2">No bookings available</h5>
+      </div> -->
+      <div class="card card-calender" ng-class="bookingData.t_status" ng-repeat="bookingData in bookDetails.bookDetailsData">
+        <div class="container-fluid bookingBox">
+          <div class="row border-bottom pad-eq controlBtns">
+            <div class="col s9">
+              <div class="row font11">
+                {{bookingData.travel_from_date | formatDate}} {{bookingData.travel_pickup_time | timeConvert}}
+              </div>
+              <div class="row">
+                <div class="details font10">Booking ID : #{{bookingData.id}}</div>
+                <div class="details font10" ng-if="bookingData.request_id">Request ID : #{{bookingData.request_id}}</div>
+                <div class="details font10" ng-if="!bookingData.request_id">Request ID : Not Assigned</div>
+              </div>
+            </div>
+            <div class="col s3 right-align">
+              <span class="status" ng-class="bookingData.t_status">{{bookingData.t_status | uppercase}}</span>
+            </div>
+          </div>
+          <div class="row border-bottom pad-eq">
+            <div class="row">
+              <div class="col m4 s2"><span class="details">From</span></div>
+              <div class="col m8 s10 address bookingFont">{{bookingData.pickup_point_code}},{{bookingData.travel_pickup_point_addr1}}, {{bookingData.pickup_location | capitalize}}</div>
+            </div>
+            <div class="row">
+              <div class="col m4 s2"><span class="details">To</span></div>
+              <div class="col m8 s10 address bookingFont">{{bookingData.drop_point_code}},{{bookingData.travel_drop_point_addr1}}, {{bookingData.pickup_location | capitalize}}</div>
+            </div>
+            <div class="row">
+              <div class="col s6">
+                <div><span class="details">Ride For</span></div>
+                <div class="bookingFont">{{bookingData.NAME | checkSelf}}</div>
+              </div>
+              <div class="col s6">
+                <div><span class="details">Charge Code</span></div>
+                <div class="bookingFont">{{bookingData.charge_type | uppercase}}</div>
+              </div>
+            </div>
+            <div class="row" ng-show="bookingData.t_status=='Allocated' || bookingData.t_status=='Closed'">
+              <div class="col s6">
+                <div><span class="details font10">Number Plate</span></div>
+                <div class="font11" ng-show="bookingData.vehicle">{{bookingData.vehicle}}</div>
+                <div class="font11" ng-show="bookingData.vehicle == null || bookingData.vehicle == ''">Not Available</div>
+              </div>
+              <div class="col s6">
+                <div><span class="details font10">Car</span></div>
+                <div class="font11" ng-show="bookingData.car_model_name">{{bookingData.car_model_name}}</div>
+                <div class="font11" ng-show="bookingData.car_model_name == null">Not Available</div>
+              </div>
+            </div>
+          </div>
+          <div class="row pad-bottom-20 controlBtns">
+            <div class="col s4 center editDetails"><a href="javascript:void(0);" class="bookingFont" ng-click="bookDetails.editBooking(bookingData.id)" ng-class="{disable : bookingData.pastBooking || bookingData.t_status=='Cancel' || bookingData.t_status=='Allocated' || bookingData.t_status=='Declined' || bookingData.t_status=='Closed'}" ng-disabled="bookingData.pastBooking || bookingData.t_status=='Cancel' || bookingData.t_status=='Allocated' || bookingData.t_status=='Declined' || bookingData.t_status=='Closed'">Edit</a></div>
+
+            <div class="col s4 center editDetails"><a href="tel:{{bookingData.v_mobile_no}}" class="bookingFont"  ng-class="{disable : bookingData.pastBooking || bookingData.v_mobile_no == null || bookingData.t_status=='Cancel'}" ng-disabled="bookingData.pastBooking || bookingData.v_mobile_no == null || bookingData.t_status=='Cancel'">Call Driver</a></div>
+
+            <div class="col s4 center editDetails"><a href="javascript:void(0);" class="bookingFont" ng-click="bookDetails.openCancelBooking(bookingData.id)" ng-class="{disable : bookingData.pastBooking || bookingData.t_status=='Cancel' || bookDetails.isGarageClosed(bookingData.travel_from_date,bookingData.travel_pickup_time,bookingData.t_status) || bookingData.t_status=='Declined' || bookingData.t_status=='Closed'}" ng-disabled="bookingData.pastBooking || bookingData.t_status=='Cancel' || bookDetails.isGarageClosed(bookingData.travel_from_date,bookingData.travel_pickup_time,bookingData.t_status) || bookingData.t_status=='Declined' || bookingData.t_status=='Closed'">Cancel</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- New Model -->
+    <!-- Past bookings -->
+    <!-- <div class="ad-hoc-container" id="pastBookings">
+      <div class="row margin-top-20 v-wrapper" style="height: 20em" ng-if="!bookDetails.hasPastBookings || !bookDetails.hasBookings">
+        <h5 class="center grey-text text-darken-2">No bookings available</h5>
+      </div>
+      <div class="card card-calender" ng-class="bookingData.t_status" ng-repeat="bookingData in bookDetails.pastBookingDetailsData">
+        <div class="container-fluid bookingBox">
+          <div class="row border-bottom pad-eq controlBtns">
+            <div class="col s9">
+              <div class="row font11">
+                {{bookingData.travel_from_date | formatDate}} {{bookingData.travel_pickup_time | timeConvert}}
+              </div>
+              <div class="row">
+                <div class="details font10">Booking ID : #{{bookingData.id}}</div>
+                <div class="details font10" ng-if="bookingData.request_id">Request ID : #{{bookingData.request_id}}</div>
+                <div class="details font10" ng-if="!bookingData.request_id">Request ID : Not Assigned</div>
+              </div>
+            </div>
+            <div class="col s3 right-align">
+              <span class="status" ng-class="bookingData.t_status">{{bookingData.t_status | uppercase}}</span>
+            </div>
+          </div>
+          <div class="row border-bottom pad-eq">
+            <div class="row">
+              <div class="col m4 s2"><span class="details">From</span></div>
+              <div class="col m8 s10 address bookingFont">{{bookingData.pickup_point_code}},{{bookingData.travel_pickup_point_addr1}}, {{bookingData.pickup_location | capitalize}}</div>
+            </div>
+            <div class="row">
+              <div class="col m4 s2"><span class="details">To</span></div>
+              <div class="col m8 s10 address bookingFont">{{bookingData.drop_point_code}},{{bookingData.travel_drop_point_addr1}}, {{bookingData.pickup_location | capitalize}}</div>
+            </div>
+            <div class="row">
+              <div class="col s6">
+                <div><span class="details">Ride For</span></div>
+                <div class="bookingFont">{{bookingData.NAME | checkSelf}}</div>
+              </div>
+              <div class="col s6">
+                <div><span class="details">Charge Code</span></div>
+                <div class="bookingFont">{{bookingData.charge_type | uppercase}}</div>
+              </div>
+            </div>
+            <div class="row" ng-show="bookingData.t_status=='Allocated' || bookingData.t_status=='Closed'">
+              <div class="col s6">
+                <div><span class="details font10">Number Plate</span></div>
+                <div class="font11" ng-show="bookingData.vehicle">{{bookingData.vehicle}}</div>
+                <div class="font11" ng-show="bookingData.vehicle == null || bookingData.vehicle == ''">Not Available</div>
+              </div>
+              <div class="col s6">
+                <div><span class="details font10">Car</span></div>
+                <div class="font11" ng-show="bookingData.car_model_name">{{bookingData.car_model_name}}</div>
+                <div class="font11" ng-show="bookingData.car_model_name == null">Not Available</div>
+              </div>
+            </div>
+          </div>
+          <div class="row pad-bottom-20 controlBtns">
+            <div class="col s4 center editDetails"><a href="javascript:void(0);" class="bookingFont" ng-click="bookDetails.editBooking(bookingData.id)" ng-class="{disable : bookingData.pastBooking || bookingData.t_status=='Cancel' || bookingData.t_status=='Allocated' || bookingData.t_status=='Declined' || bookingData.t_status=='Closed'}" ng-disabled="bookingData.pastBooking || bookingData.t_status=='Cancel' || bookingData.t_status=='Allocated' || bookingData.t_status=='Declined' || bookingData.t_status=='Closed'">Edit</a></div>
+
+            <div class="col s4 center editDetails"><a href="tel:{{bookingData.v_mobile_no}}" class="bookingFont"  ng-class="{disable : bookingData.pastBooking || bookingData.v_mobile_no == null || bookingData.t_status=='Cancel'}" ng-disabled="bookingData.pastBooking || bookingData.v_mobile_no == null || bookingData.t_status=='Cancel'">Call Driver</a></div>
+
+            <div class="col s4 center editDetails"><a href="javascript:void(0);" class="bookingFont" ng-click="bookDetails.openCancelBooking(bookingData.id)" ng-class="{disable : bookingData.pastBooking || bookingData.t_status=='Cancel' || bookDetails.isGarageClosed(bookingData.travel_from_date,bookingData.travel_pickup_time,bookingData.t_status) || bookingData.t_status=='Declined' || bookingData.t_status=='Closed'}" ng-disabled="bookingData.pastBooking || bookingData.t_status=='Cancel' || bookDetails.isGarageClosed(bookingData.travel_from_date,bookingData.travel_pickup_time,bookingData.t_status) || bookingData.t_status=='Declined' || bookingData.t_status=='Closed'">Cancel</a></div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- Past bookings => End -->
+    <!-- Upcoming Bookings -->
+    <!-- <div class="ad-hoc-container" id="upcomingBookings">
+      <div class="row margin-top-20 v-wrapper" style="height: 20em" ng-if="!bookDetails.hasUpcomingBookings || !bookDetails.hasBookings">
+        <h5 class="center grey-text text-darken-2">No bookings available</h5>
+      </div>
+      <div class="card card-calender" ng-class="bookingData.t_status" ng-repeat="bookingData in bookDetails.upcomingBookingDetailsData">
+        <div class="container-fluid bookingBox">
+          <div class="row border-bottom pad-eq controlBtns">
+            <div class="col s9">
+              <div class="row font11">
+                {{bookingData.travel_from_date | formatDate}} {{bookingData.travel_pickup_time | timeConvert}}
+              </div>
+              <div class="row">
+                <div class="details font10">Booking ID : #{{bookingData.id}}</div>
+                <div class="details font10" ng-if="bookingData.request_id">Request ID : #{{bookingData.request_id}}</div>
+                <div class="details font10" ng-if="!bookingData.request_id">Request ID : Not Assigned</div>
+              </div>
+            </div>
+            <div class="col s3 right-align">
+              <span class="status" ng-class="bookingData.t_status">{{bookingData.t_status | uppercase}}</span>
+            </div>
+          </div>
+          <div class="row border-bottom pad-eq">
+            <div class="row">
+              <div class="col m4 s2"><span class="details">From</span></div>
+              <div class="col m8 s10 address bookingFont">{{bookingData.pickup_point_code}},{{bookingData.travel_pickup_point_addr1}}, {{bookingData.pickup_location | capitalize}}</div>
+            </div>
+            <div class="row">
+              <div class="col m4 s2"><span class="details">To</span></div>
+              <div class="col m8 s10 address bookingFont">{{bookingData.drop_point_code}},{{bookingData.travel_drop_point_addr1}}, {{bookingData.pickup_location | capitalize}}</div>
+            </div>
+            <div class="row">
+              <div class="col s6">
+                <div><span class="details">Ride For</span></div>
+                <div class="bookingFont">{{bookingData.NAME | checkSelf}}</div>
+              </div>
+              <div class="col s6">
+                <div><span class="details">Charge Code</span></div>
+                <div class="bookingFont">{{bookingData.charge_type | uppercase}}</div>
+              </div>
+            </div>
+            <div class="row" ng-show="bookingData.t_status=='Allocated' || bookingData.t_status=='Closed'">
+              <div class="col s6">
+                <div><span class="details font10">Number Plate</span></div>
+                <div class="font11" ng-show="bookingData.vehicle">{{bookingData.vehicle}}</div>
+                <div class="font11" ng-show="bookingData.vehicle == null || bookingData.vehicle == ''">Not Available</div>
+              </div>
+              <div class="col s6">
+                <div><span class="details font10">Car</span></div>
+                <div class="font11" ng-show="bookingData.car_model_name">{{bookingData.car_model_name}}</div>
+                <div class="font11" ng-show="bookingData.car_model_name == null">Not Available</div>
+              </div>
+            </div>
+          </div>
+          <div class="row pad-bottom-20 controlBtns">
+            <div class="col s4 center editDetails"><a href="javascript:void(0);" class="bookingFont" ng-click="bookDetails.editBooking(bookingData.id)" ng-class="{disable : bookingData.pastBooking || bookingData.t_status=='Cancel' || bookingData.t_status=='Allocated' || bookingData.t_status=='Declined' || bookingData.t_status=='Closed'}" ng-disabled="bookingData.pastBooking || bookingData.t_status=='Cancel' || bookingData.t_status=='Allocated' || bookingData.t_status=='Declined' || bookingData.t_status=='Closed'">Edit</a></div>
+
+            <div class="col s4 center editDetails"><a href="tel:{{bookingData.v_mobile_no}}" class="bookingFont"  ng-class="{disable : bookingData.pastBooking || bookingData.v_mobile_no == null || bookingData.t_status=='Cancel'}" ng-disabled="bookingData.pastBooking || bookingData.v_mobile_no == null || bookingData.t_status=='Cancel'">Call Driver</a></div>
+
+            <div class="col s4 center editDetails"><a href="javascript:void(0);" class="bookingFont" ng-click="bookDetails.openCancelBooking(bookingData.id)" ng-class="{disable : bookingData.pastBooking || bookingData.t_status=='Cancel' || bookDetails.isGarageClosed(bookingData.travel_from_date,bookingData.travel_pickup_time,bookingData.t_status) || bookingData.t_status=='Declined' || bookingData.t_status=='Closed'}" ng-disabled="bookingData.pastBooking || bookingData.t_status=='Cancel' || bookDetails.isGarageClosed(bookingData.travel_from_date,bookingData.travel_pickup_time,bookingData.t_status) || bookingData.t_status=='Declined' || bookingData.t_status=='Closed'">Cancel</a></div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- Upcoming Bookings => End -->
+    <sidebar-View></sidebar-View>
+  </div>
+  <div id="modal2" class="cancel modal">
+    <div class="modal-content single-cab-form">
+      <div class="center-align uppercase">Cancel Ride?</div>
+      <div class="row border-bottom" style="margin-bottom: 5px;">
+        <div class="input-field col s12">
+          <div class="center">
+            This will cancel your trip
+          </div>
+        </div>
+      </div>
+      <div class="row pad-bottom-20 controlBtns">
+        <div class="col s6 center editDetails">
+          <a href="javascript:void(0);" class="col s12 modal-action modal-close blue-text">Cancel</a>
+        </div>
+        <div class="col s6 center editDetails">
+          <a href="javascript:void(0);" class="col s12 modal-action modal-close blue-text" ng-click="bookDetails.cancelBooking(bookDetails.bookingId)">Continue</a>
+        </div>
+      </div>
+    </div>
+  </div>
